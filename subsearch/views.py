@@ -19,6 +19,7 @@ def index(request):
         srt_location = settings.BASE_DIR/ 'media' / unique_name + '.srt'
         video_id = str(uuid.uuid4())
         process_video.delay(upload_dir.as_uri(), srt_location.as_uri(), video_id)
+        return redirect('search', pk=video_id)
         
     return render(request, "index.html", {})
 
